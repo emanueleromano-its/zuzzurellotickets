@@ -95,7 +95,7 @@ resource "azurerm_network_security_rule" "jumpbox_ingress" {
   protocol                    = "Tcp"
   source_port_range           = "*"
   destination_port_ranges      = ["22", "3389"] # Modifica con le porte SSH/RDP necessarie
-  source_address_prefix       = "<IP_ADMINISTRATIVO>" # Sostituisci con l'IP amministrativo
+  source_address_prefix       = var.admin_ip # Sostituisci con l'IP amministrativo
   destination_address_prefix  = "*"
   resource_group_name         = azurerm_resource_group.rg-test.name
   network_security_group_name = azurerm_network_security_group.nsg-test-jumpbox.name
