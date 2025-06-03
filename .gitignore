@@ -1,0 +1,9 @@
+*.pem
+*.key
+*.tfstate
+*.tfstate.*
+.terraform/
+*.pub
+ssh-prod*
+ssh-test*
+variables.tf
