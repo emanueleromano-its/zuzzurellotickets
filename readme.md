@@ -33,10 +33,15 @@ Questa repository contiene il codice di infrastruttura per l'applicazione Zuzzur
     d. Subnet-jump: opzionale, per la jumpbox/VM SSH management
 
 🔐 3. Network Security Groups (NSG)
+    Associazione di NSG a ciascuna subnet per controllare il traffico in ingresso e in uscita
+    con regole specifiche per ogni subnet:
 
-    Regole minime per ogni subnet (deny all default, allow solo traffico specifico)
-
-    Es. solo FE può accedere alla BE su porta 8000, solo BE può parlare con DB su 5432
+| NSG         | Inbound consentito                             | Outbound consentito                         |
+|-------------|-----------------------------------------------|---------------------------------------------|
+| Frontend    | HTTP/HTTPS da Internet                        | Verso Backend                              |
+| Backend     | Da Frontend su porte applicative              | Verso Database                             |
+| Database    | Da Backend su porte DB                        | - (blocco totale o restrizione forte)      |
+| Jumpbox     | SSH/RDP da IP admin                           | Verso tutte le subnet interne              |
 
 🖥 4. Virtual Machines (SKU: Standard_B1ls)
 
@@ -74,7 +79,6 @@ Questa repository contiene il codice di infrastruttura per l'applicazione Zuzzur
 
     Output delle subnet per referenziare velocemente
 
-    Opzionale: file locals e variables.tf ben strutturati
 
 📁 9. Struttura dei file Terraform consigliata:
 
