@@ -9,6 +9,11 @@ Questa repository contiene il codice di infrastruttura per l'applicazione Zuzzur
 ├── .gitignore
 ├── main.tf
 ├── network.tf
+├── compute.tf
+├── security.tf
+├── ssh.tf
+├── variables.tf
+├── outputs.tf
 └── readme.md
 ```
 
@@ -79,22 +84,6 @@ Questa repository contiene il codice di infrastruttura per l'applicazione Zuzzur
 
     Output delle subnet per referenziare velocemente
 
-
-📁 9. Struttura dei file Terraform consigliata:
-
-    main.tf
-
-    variables.tf
-
-    outputs.tf
-
-    network.tf (VNet, subnet, NSG)
-
-    compute.tf (VMs, disks, IPs)
-
-    security.tf (NSG rules)
-
-    ssh.tf (chiavi e gestione accessi)
 
 ## Usage
 
