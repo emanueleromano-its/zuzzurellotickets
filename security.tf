@@ -6,7 +6,7 @@ resource "azurerm_network_security_rule" "http_https_ingress" {
   access                      = "Allow"
   protocol                    = "Tcp"
   source_port_range           = "*"
-  destination_port_range      = ["80", "443"]
+  destination_port_ranges      = ["80", "443"]
   source_address_prefix       = "*"
   destination_address_prefix  = "*"
   resource_group_name         = azurerm_resource_group.rg-test.name
@@ -20,7 +20,7 @@ resource "azurerm_network_security_rule" "backend_traffic_egress" {
   access                      = "Allow"
   protocol                    = "Tcp"
   source_port_range           = "*"
-  destination_port_range      = ["80", "443"] # Modifica con le porte applicative necessarie
+  destination_port_ranges      = ["80", "443"] # Modifica con le porte applicative necessarie
   source_address_prefix       = "*"
   destination_address_prefix  = azurerm_subnet.subnet-test-backend.address_prefixes[0]
   resource_group_name         = azurerm_resource_group.rg-test.name
@@ -50,7 +50,7 @@ resource "azurerm_network_security_rule" "backend_ingress" {
   access                      = "Allow"
   protocol                    = "Tcp"
   source_port_range           = "*"
-  destination_port_range      = ["80", "443"] # Modifica con le porte applicative necessarie
+  destination_port_ranges      = ["80", "443"] # Modifica con le porte applicative necessarie
   source_address_prefix       = azurerm_subnet.subnet-test-frontend.address_prefixes[0]
   destination_address_prefix  = "*"
   resource_group_name         = azurerm_resource_group.rg-test.name
@@ -64,7 +64,7 @@ resource "azurerm_network_security_rule" "db_traffic_egress" {
   access                      = "Allow"
   protocol                    = "Tcp"
   source_port_range           = "*"
-  destination_port_range      = ["1433", "3306"] # Modifica con le porte del database necessarie
+  destination_port_ranges      = ["1433", "3306"] # Modifica con le porte del database necessarie
   source_address_prefix       = "*"
   destination_address_prefix  = azurerm_subnet.subnet-test-postgresql.address_prefixes[0]
   resource_group_name         = azurerm_resource_group.rg-test.name
@@ -79,7 +79,7 @@ resource "azurerm_network_security_rule" "db_ingress" {
   access                      = "Allow"
   protocol                    = "Tcp"
   source_port_range           = "*"
-  destination_port_range      = ["1433", "3306"] # Modifica con le porte del database necessarie
+  destination_port_ranges      = ["1433", "3306"] # Modifica con le porte del database necessarie
   source_address_prefix       = azurerm_subnet.subnet-test-backend.address_prefixes[0]
   destination_address_prefix  = "*"
   resource_group_name         = azurerm_resource_group.rg-test.name
@@ -94,7 +94,7 @@ resource "azurerm_network_security_rule" "jumpbox_ingress" {
   access                      = "Allow"
   protocol                    = "Tcp"
   source_port_range           = "*"
-  destination_port_range      = ["22", "3389"] # Modifica con le porte SSH/RDP necessarie
+  destination_port_ranges      = ["22", "3389"] # Modifica con le porte SSH/RDP necessarie
   source_address_prefix       = "<IP_ADMINISTRATIVO>" # Sostituisci con l'IP amministrativo
   destination_address_prefix  = "*"
   resource_group_name         = azurerm_resource_group.rg-test.name
